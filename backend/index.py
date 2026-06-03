@@ -1,17 +1,20 @@
 from flask import Flask, request, render_template
 from concurrent.futures import ThreadPoolExecutor
-from process import Highlighter
+from src.media_tools import MediaTools
+from moviepy import VideoFileClip
 
 app = Flask(__name__)
 executor = ThreadPoolExecutor(max_workers=5)
 
-@app.route("/")
-def hello_world():
+@app.get("/")
+def index():
     try:
-        video_path = 'input.mp4'
-        audio_path = 'audio.mp3'
-        highlighter = Highlighter(video_path, audio_path)
-        executor.submit(highlighter.run)
+        file = VideoFileClip('input.mp4')
+        sound = file.audio
+        sound.write_audiofile('audio.mp3')
+        # ffmpeg.input("input.mp4").output('audio.mp3').run()
+        # highlighter = MediaTools()
+        # executor.submit(highlighter.run)
         return f'Done!'
     except Exception as e:
         return str(e)
