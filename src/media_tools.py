@@ -1,4 +1,4 @@
-import ffmpeg
+from moviepy import VideoFileClip
 
 class MediaTools:
     def __init__(self, video='input.mp4'):
@@ -6,9 +6,10 @@ class MediaTools:
         self.audio_path = 'audio.mp3'
 
     def extract_audio(self):
-        ffmpeg.input(self.video_path).output(self.audio_path).run()
+        file = VideoFileClip('input.mp4')
+        sound = file.audio
+        sound.write_audiofile('audio.mp3')
 
     def run(self):
         print('run')
         # self.extract_audio()
-        ffmpeg.input(self.video_path).output(self.audio_path).run() 
