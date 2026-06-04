@@ -9,9 +9,9 @@ executor = ThreadPoolExecutor(max_workers=5)
 @app.get("/")
 def index():
     try:
-        highlighter = MediaTools()
-        executor.submit(highlighter.run)
-        return f'Done!'
+        # highlighter = MediaTools()
+        # executor.submit(highlighter.run)
+        return render_template('index.html')
     except Exception as e:
         return str(e)
 
