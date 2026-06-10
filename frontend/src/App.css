@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+    --main-back-color: #c0c0c0;
+    --main-font-color: #000000;
+    --main-hover-color: #808080;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-back-color: #000000;
+        --main-font-color: #ffffff;
+        --main-hover-color: #808080;
+    }
+}
+
+@theme {
+    --color-back: var(--main-back-color);
+    --color-font: var(--main-font-color);
+    --color-hover: var(--main-hover-color);
+}
